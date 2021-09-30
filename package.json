@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "server": "nodemon index.js"
+    "server": "nodemon index.js",
+    "hroeku-postbuild": "cd client && npm i && npm ren build"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
     "nodemon": "^2.0.13"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1"
   }

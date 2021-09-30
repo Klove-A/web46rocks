@@ -1,16 +1,28 @@
-require('dotenv').config()
+require('dotenv').config();
 
-const express = require('express')
+// console.log("stuff");
+// console.log(process.argv[2]);
+// console.log(process.env.USER);
 
-const server = express()
-server.use(express.json())
+const express = require('express');
 
-server.get('/hello', (req, res) => {
-  res.send('<h1>HELLO THERE!</h1>')
-})
+const server = express();
+server.use(cors());
+server.use(express.json());
+server.use(express.static(
+  path.join(_dirname, "client/build")
+));
 
-const port = process.env.PORT || 3000
+server.get("/api/users", (req, res) => {
+  res.json([{ id: 1, name: "Greg" }])
+});
+
+server.get("*", (req, res) => {res.sendFile(
+  path.join(_dirname, "client/build", "index.html")
+)});
+
+const port = process.env.PORT || 3000;
 
 server.listen(port, () => {
   console.log(`listening on ${port}`)
-})
+});
